@@ -1,0 +1,195 @@
+
+
+<style>
+.requiredstar {
+	color: #FF0000;
+}
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<div id="c">
+<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" onsubmit="return Validate();" method="post" name="frmPayPal1"  id="customerform" name="customerform">
+<div class="regis-cust">
+ <div id="contentcell">
+
+	<div class="panel panel-default">
+    <div class="panel-heading"><h2 class="text-center reg-form-title">Registration / Customer Information</h2></div>
+    <div class="panel-body custom-body">			
+
+			<div class="col-sm-12 frm-style">
+			
+			<p id="formwarnings"></p>
+			<div class="formzone">
+			<div id="contentcell" class="col-md-6">
+			  <div >Please fill all fields marked: <b class="requiredstar"> [required *] </b></div>	
+			  <h3>Billing Information</h3>
+			<input name="Full_Name" type="hidden" class="form-control" id="Full_Name" value=" " />
+			<div class="form-group col-md-12" >
+			<label class="col-md-4" >First Name: <span class="requiredstar">*</span></label>
+			<div class="col-md-7">
+			<input name="first_name" type="text" class="form-control" id="first_Name" value=""  />
+			  </div>
+			</div>
+			<div class="form-group col-md-12">
+				<label class="col-md-4" >Last Name: <span class="requiredstar">*</span></label>
+				<div class="col-md-7">
+				<input name="last_name" type="text" class="form-control" id="last_name" value="" />
+				 </div>
+			</div>
+			<div class="form-group col-md-12">
+			<label class="col-md-4" >Address: <span class="requiredstar">*</span></label>
+			<div class="col-md-7">
+			<input name="address" type="text" class="form-control" id="address"	value="" />
+			</div>
+			</div>
+			<div class="form-group col-md-12">
+			<label class="col-md-4" >City: <span class="requiredstar">*</span></label>
+			<div class="col-md-7">
+			<input name="city" type="text" class="form-control" id="city"value="" />
+			</div>
+			</div> 
+			<div class="form-group col-md-12">
+				<label class="col-md-4" >Province / State: <span class="requiredstar">*</span></label>
+				<div class="col-md-7">
+				    <input name="province_state" type="text" class="form-control" id="province_state" value="" />
+				</div>
+			</div>	
+			<div class="form-group col-md-12">
+		    <label class="col-md-4" >Country: <span class="requiredstar">*</span></label>
+			<div class="col-md-7">
+			<input name="country" type="text" class="form-control" id="country" value="" />
+			</div>
+			</div>
+			<div class="form-group col-md-12">
+			<label class="col-md-4" >Postal / Zip Code: <span class="requiredstar">*</span></label>
+			<div class="col-md-7">
+			<input name="Postal_ZipCode" type="text"  onkeypress="return isNumberKey(event)" class="form-control" id="postal_zip_code" 	value="" size="15" />
+			</div>
+			</div>
+			<div class="form-group col-md-12">
+				<label class="col-md-4" >Phone Number:<span class="requiredstar">*</span></label>
+				<div class="col-md-7">
+				<input name="Phone_Number" type="text"  onkeypress="return isNumberKey(event)" class="form-control" id="phone_number" 
+				value="" size="25" />
+				</div>
+			</div> 
+			<div class="form-group col-md-12">
+			<label class="col-md-4" >Email Address :<span class="requiredstar">*</span></label>
+			<div class="col-md-7">
+					<input name="Email_Address" type="text" class="form-control" id="email_address" value="" />
+	       </div>
+		   </div>
+		   
+		   
+		   <div class="form-group col-md-12">
+			<label class="col-md-4" ></label>
+			<div class="col-md-7">
+				 <input type="submit" class="btn btn-lg btn-primary btn-block" id="" value="submit" />
+
+	       </div>
+		   </div>
+
+           </div>
+	
+		
+	
+		
+		
+			</form>
+			</div>
+           
+		
+		</div>
+	</div>
+ </div>
+</div>
+</div>
+
+</div>
+
+
+<script>
+function Validate(){
+	jQuery("input[type=text],input[type=password],select").css('border','1px solid ');
+	
+	
+	  if(jQuery("#first_Name").val()=="")
+			  {
+				 jQuery("#first_Name").css('border','1px solid red'); jQuery( "#first_Name" ).focus();
+				  return false;
+			  }
+				  if(jQuery("#last_name").val()=="")
+				  {
+					 jQuery("#last_name").css('border','1px solid red'); jQuery( "#last_name" ).focus();
+					  return false;
+				  }
+					if(jQuery("#address").val()=="")
+					 {
+					 jQuery("#address").css('border','1px solid red'); jQuery( "#address" ).focus();
+					  return false;
+					 }
+						 if(jQuery("#address").val()=="")
+						 {
+						 jQuery("#address").css('border','1px solid red'); jQuery( "#address" ).focus();
+						  return false;
+						 }
+			 if(jQuery("#city").val()=="")
+		     {
+			 jQuery("#city").css('border','1px solid red'); jQuery("#city").focus();
+			  return false;
+		     }
+					 if(jQuery("#province_state").val()=="")
+					 {
+					 jQuery("#province_state").css('border','1px solid red'); jQuery("#province_state").focus();
+					  return false;
+					 }
+			 if(jQuery("#country").val()=="")
+		     {
+			 jQuery("#country").css('border','1px solid red'); jQuery( "#country" ).focus();
+			  return false;
+		     }
+				   if(jQuery("#postal_zip_code").val()=="")
+					 {
+					 jQuery("#postal_zip_code").css('border','1px solid red'); jQuery("#postal_zip_code").focus();
+					  return false;
+					 }
+		 
+		   if(jQuery("#phone_number").val()=="")
+		     {
+			 jQuery("#phone_number").css('border','1px solid red'); jQuery("#phone_number").focus();
+			  return false;
+		     }
+				   if(jQuery("#email_address").val()=="")
+					 {
+					 jQuery("#email_address").css('border','1px solid red'); jQuery("#email_address").focus();
+					  return false;
+					 }
+					 
+					 
+				   
+					
+	     
+		 function isEmailValid(emailAdress) {
+			var EMAIL_REGEXP = new RegExp('^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$', 'i');
+			return EMAIL_REGEXP.test(emailAdress)
+		}
+		var emailAdress=jQuery("#email_address").val();
+		 if (isEmailValid(emailAdress)) {
+					    //console.log("ok");
+						}
+						else {
+							     jQuery("#email_address").css('border','1px solid red'); jQuery("#email_address").focus(); 
+							    return false;
+						 }
+						 
+						
+                          
+}
+</script>	
+
+ 
+

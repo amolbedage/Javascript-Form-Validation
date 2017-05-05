@@ -1,0 +1,126 @@
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
+
+<script>
+jQuery( document ).ready(function() {
+
+jQuery(".error").hide();
+jQuery("#savemsg").hide();
+
+ }); 
+ </script>
+<div class="scholarship-form col-md-6">
+	<div class="scholar-frm">
+		<div class="text-center"><h2>PLEASE FILL THE FORM BELOW FOR SCHOLARSHIP</h2></div>
+		<div><h2 id="savemsg">Successfully Applied...</h2></div>
+		<form name="scholar_form">  
+			<div class="form-group" class="col-md-6">
+				<input class="form-control" type="text"id="name" name="name" value="" placeholder="Name">
+				<span class="error" id="name_error"> Name is Required</span>  
+			</div>
+			<div class="form-group" class="col-md-6">
+			   <input  class="form-control" type="text" id="email" name="email" value="" placeholder="Email">
+				<span class="error" id="email_error">Email id is Required</span>  
+			</div>
+			<div class="form-group" class="col-md-6">
+				<input class="form-control" type="text" id="phone"name="phone" value="" onkeypress="return isNumberKey(event)" placeholder="Phone">
+				<span class="error" id="phone_error">Phone Number is  Required</span>  
+			</div>
+			<div class="form-group" class="col-md-6">
+				<input class="form-control" type="text" id="residence" name="residence" value="" placeholder="Country of Residence">
+				<span class="error" id="residence_error">Country of Residence is  Required</span> 
+			</div>
+			<div class="form-group" class="col-md-6">				<input type="text" class="form-control" id="education" name="education" value="" placeholder="Education">			
+				<span class="error" id="education_error">Country of Residence is  Required</span> 
+			</div>
+			<div class="form-group" class="col-md-6">				<input class="form-control"  type="text" id="number_dependents" name="number_dependents" value="" placeholder="Number of dependents">
+			</div>
+			<div class="form-group" class="col-md-6">
+				<input class="form-control" type="text" id="referred" name="referred" value="" placeholder="Referred by employer oe recruiter if applicable">
+			</div>
+			<input type="button" name="submit" value="Submit" id="submit_slr" class="btn-primary" onclick="submit_scholarship()">
+		</form>
+	</div> 
+</div> 
+<style>
+.error{
+	color:red;
+}
+#savemsg{
+	color:green;
+}
+</style>
+  
+<script>
+jQuery( document ).ready(function() {
+
+jQuery(".error").hide();
+jQuery("#savemsg").hide();
+
+ }); 
+function isNumberKey(evt){  <!--Function to accept only numeric values-->
+    //var e = evt || window.event;
+	var charCode = (evt.which) ? evt.which : evt.keyCode
+    if (charCode != 46 && charCode > 31 
+	&& (charCode < 48 || charCode > 57))
+        return false;
+        return true;
+	}
+  function submit_scholarship(){
+	jQuery(".error").hide();
+		function isEmailValid(emailAdress) {
+			var EMAIL_REGEXP = new RegExp('^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$', 'i');
+			return EMAIL_REGEXP.test(emailAdress)
+		}
+	
+	 var name=jQuery('#name').val();	 var email=jQuery('#email').val();
+	 var phone=jQuery('#phone').val(); var residence=jQuery('#residence').val();
+	 var number_dependents=jQuery('#number_dependents').val();
+	 var education=jQuery('#education').val(); var referred=jQuery('#referred').val();
+	//alert(email+name);
+	 var error_no=0;	
+	if(name==""){jQuery('#name_error').show();error_no=1; }	
+   if(email==""){ jQuery('#email_error').show();  error_no=1;}	
+   if (isEmailValid(email)) {
+				//jQuery("#error_mail").hide();
+				    console.log("ok");
+				}
+				else {
+					error_no=1; jQuery('#email_error').show();
+					console.log("not valid");
+				   jQuery("#email_error").html('Email is Not Valid');  
+				 } 
+	if(phone==""){jQuery('#phone_error').show();	error_no=1;	}
+	if(residence==""){jQuery('#residence_error').show();	error_no=1;	}
+	if(education==""){jQuery('#education_error').show();	error_no=1;	}
+	
+	
+	if(error_no==0){
+		jQuery("#loader-id").show();	
+		jQuery("#submit_slr").attr("disabled","disabled");
+		   var ajaxurl = 'save.php';
+    jQuery.ajax({
+         type :"post",
+         dataType : "text",
+         url :ajaxurl,
+         data : {action: "apply_scholarship", name:name,email:email,phone:phone,residence:residence,number_dependents:number_dependents,education:education,referred:referred},
+         success: function(d){
+		    //  jQuery('#scholar_form').trigger("reset");
+			 jQuery("input[type=text],input[type=email], textarea").val("");
+			 jQuery("#submit_slr").attr("disabled",false);
+			 jQuery("#savemsg").fadeIn(); jQuery("#savemsg").fadeOut(5000);
+			 //jQuery(tabname).html(d);
+			 jQuery("#loader-id").hide();	
+         }
+      }); 
+	}
+	else{
+		//alert("error");
+	}
+	
+	
+	 }
+</script>
+  
