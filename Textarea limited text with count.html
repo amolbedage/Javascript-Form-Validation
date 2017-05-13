@@ -1,0 +1,16 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<textarea rows="5" id="content_txt" name="TextArea1"  maxlength="50" ></textarea>
+<p id="message"></p>
+
+<script>
+
+$('#content_txt').on('keyup change input paste',function(e){
+ var area = document.getElementById("content_txt");
+var message = document.getElementById("message");
+var maxLength = 50;
+    if(area.value.length <= maxLength) {
+        message.innerHTML = (maxLength-area.value.length) + " characters remainging";
+    }
+});
+//setInterval(checkLength, 300);
+</script>
